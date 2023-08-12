@@ -28,7 +28,9 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #f4e04d;
+  background-color: #2a628f;
+  scale: 1.1;
+  transition: scale 0.25s;
 }
 button:focus,
 button:focus-visible {

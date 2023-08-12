@@ -85,11 +85,12 @@ const List = () => {
     download: false,
     print: false,
     selectableRows: "none" as SelectableRows,
+    viewColumns: false,
   }
 
   return (
     <main className={styles.page}>
-      <MUIDataTable title={"Employee List"} data={users} columns={columns} options={options} />
+      <MUIDataTable title={"Current Employees"} data={users} columns={columns} options={options} />
     </main>
   );
 };
