@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Form from "../../components/Form/Form";
-import Modal from "../../components/Modal/Modal";
+import { lazy, useState } from "react";
 import styles from "./FormPage.module.scss";
+const Form = lazy(() => import ("../../components/Form/Form"));
+const Modal = lazy(() => import ("../../components/Modal/Modal"));
 
 const FormPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
