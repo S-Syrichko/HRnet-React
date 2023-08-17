@@ -1,7 +1,7 @@
-import { lazy, useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import styles from "./FormPage.module.scss";
-const Form = lazy(() => import ("../../components/Form/Form"));
-const Modal = lazy(() => import ("../../components/Modal/Modal"));
+const Form = lazy(() => import("../../components/Form/Form"));
+const Modal = lazy(() => import("../../components/Modal/Modal"));
 
 const FormPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -21,8 +21,10 @@ const FormPage = () => {
   return (
     <main className={styles.page}>
       <h2>Create Employee</h2>
-      <Form onEmployeeCreated={handleEmployeeCreated} />
-      <Modal isOpen={modalIsOpen} onClose={handleCloseModal} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Form onEmployeeCreated={handleEmployeeCreated} />
+        <Modal isOpen={modalIsOpen} onClose={handleCloseModal} />
+      </Suspense>
     </main>
   );
 };
