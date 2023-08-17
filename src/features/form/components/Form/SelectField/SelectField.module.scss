@@ -1,3 +1,6 @@
+@import '../../../../../styles/utils/variables';
+
+
 .dropdown {
     width: 90%;
     font-size: 1.2rem;
@@ -5,7 +8,9 @@
     border-radius: 2px;
     padding: 1px 5px;
     cursor: pointer;
-    background-color: lighten(#5eb1bf, 30%);
+    background-color: darken($color-secondary, 20%);
+    color: white;
+    // background-color: lighten(#5eb1bf, 30%);
 
   &Control {
     display: flex;
@@ -14,7 +19,7 @@
   }
   &Menu {
     div:hover {
-        background-color: #5eb1bf;
+        background-color: $color-primary;
         color: white;
       }
     

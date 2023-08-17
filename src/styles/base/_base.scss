@@ -1,8 +1,10 @@
+@import "./../utils/variables";
+
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: $color-text;
 }
 
 body,
@@ -13,7 +15,7 @@ body,
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: $color-tertiary;
 }
 
 button {
@@ -23,15 +25,15 @@ button {
   font-size: 1em;
   font-weight: bold;
   font-family: inherit;
-  background-color: #5eb1bf;
+  background-color: $color-quaternary;
   color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  background-color: #2a628f;
+  background-color: $color-primary;
   scale: 1.1;
-  transition: scale 0.25s;
+  transition: scale 0.1s;
 }
 button:focus,
 button:focus-visible {
