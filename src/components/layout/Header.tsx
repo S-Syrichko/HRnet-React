@@ -1,9 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 const Header = () => {
   const navigate = useNavigate();
-  const currentPage = window.location.pathname;
+  const location = useLocation();
+  const currentPage = location.pathname;
+  
   if (currentPage === "/employee-list") {
     return (
       <header>

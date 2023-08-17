@@ -1,1 +1,1 @@
-export {default as ListPage} from './pages/List/List';
+export {default as ListPage} from './pages/ListPage/ListPage';
