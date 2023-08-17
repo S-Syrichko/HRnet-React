@@ -1,18 +1,49 @@
+@import './../../../../styles/utils/variables';
+
 .page {
     flex: 1;
     text-align: center;
     margin-top: 2rem;
-    h6{
-      font-weight: bold;
-    }
+  }
+  .table{
+    background-color: $color-quaternary;
+    color: white;
+    margin-bottom: 10px;
+    width: 100%;
     th{
-      background-color: #5eb1bf;
+      background-color: $color-quaternary;
       color: white;
-      button{
-        scale: unset;
+      padding: 10px;
+    }
+    tr{
+     background-color: darken($color-secondary, 20%);
+
+      &:nth-child(even){
+        background-color: lighten($color-secondary, 10%);
+        color: $color-text;
+
+      }
+      td{
+        text-align: center;
+        padding: 5px 10px;
       }
     }
-    td{
-      text-align: center;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  
+    button {
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border: none;
+  
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
     }
   }
+  
