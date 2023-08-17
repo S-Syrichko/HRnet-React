@@ -1,0 +1,22 @@
+.dropdown {
+    width: 90%;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 1px 5px;
+    cursor: pointer;
+    background-color: lighten(#5eb1bf, 30%);
+
+  &Control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &Menu {
+    div:hover {
+        background-color: #5eb1bf;
+        color: white;
+      }
+    
+  }
+}

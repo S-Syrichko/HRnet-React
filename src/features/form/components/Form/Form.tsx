@@ -1,41 +1,38 @@
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import { addUser } from "../../../../store/features/userSlice";
 import { useAppDispatch } from "../../../../store/store";
-import { states } from "../../utils/formData";
+import { departments, states } from "../../utils/formData";
+import { handleDateChange } from "../../utils/functions";
 import styles from "./Form.module.scss";
-import { Moment } from 'moment';
-import PropTypes from "prop-types";
+import SelectField from "./SelectField/SelectField";
 
 type FormProps = {
-    onEmployeeCreated: () => void;
+  onEmployeeCreated: () => void;
 };
 
-const Form = ({onEmployeeCreated}: FormProps) => {
-    const dispatch = useAppDispatch();
+const stateValues = states.map((state) => state.name);
+
+const Form = ({ onEmployeeCreated }: FormProps) => {
+  const dispatch = useAppDispatch();
+
   const [selectedBirthDate, setSelectedBirthDate] = useState<Date | string>("");
   const [selectedStartDate, setSelectedStartDate] = useState<Date | string>("");
-
-  const handleBirthDateChange = (date: string | Moment) => {
-    if (typeof date === 'string') {
-      setSelectedBirthDate(date);
-    } else {
-      setSelectedBirthDate(date.toDate());
-    }
-  };
-
-  const handleStartDateChange = (date: string | Moment) => {
-    if (typeof date === 'string') {
-      setSelectedStartDate(date);
-    } else {
-      setSelectedStartDate(date.toDate());
-    }
-  };
+  const [selectedState, setSelectedState] = useState<string>(stateValues[0]);
+  const [selectedDepartment, setSelectedDepartment] = useState<string>(
+    departments[0]
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
+
+    const stateAbbreviation = states.find(
+      (s) => s.name === selectedState
+    )?.abbreviation;
+
     const payload = {
       firstName: target["first-name"].value,
       lastName: target["last-name"].value,
@@ -43,10 +40,11 @@ const Form = ({onEmployeeCreated}: FormProps) => {
       startDate: target["start-date"].value,
       street: target["street"].value,
       city: target["city"].value,
-      state: target["state"].value,
+      state: stateAbbreviation,
       zipCode: target["zip-code"].value,
-      department: target["department"].value,
+      department: selectedDepartment,
     };
+
     dispatch(addUser(payload));
     onEmployeeCreated();
 
@@ -66,20 +64,20 @@ const Form = ({onEmployeeCreated}: FormProps) => {
       <label htmlFor="date-of-birth">Date of Birth</label>
       <Datetime
         className={styles.formDatepicker}
-        key={'birthDate' + selectedBirthDate}
+        key={"birthDate" + selectedBirthDate}
         timeFormat={false}
         value={selectedBirthDate}
-        onChange={handleBirthDateChange}
+        onChange={(date) => handleDateChange(date, setSelectedBirthDate)}
         inputProps={{ id: "date-of-birth", required: true }}
       />
 
       <label htmlFor="start-date">Start Date</label>
       <Datetime
         className={styles.formDatepicker}
-        key={'startDate' + selectedStartDate}
+        key={"startDate" + selectedStartDate}
         timeFormat={false}
         value={selectedStartDate}
-        onChange={handleStartDateChange}
+        onChange={(date) => handleDateChange(date, setSelectedStartDate)}
         inputProps={{ id: "start-date", required: true }}
       />
 
@@ -92,27 +90,22 @@ const Form = ({onEmployeeCreated}: FormProps) => {
         <label htmlFor="city">City</label>
         <input id="city" type="text" required />
 
-        <label htmlFor="state">State</label>
-        <select name="state" id="state">
-          {states.map((state) => (
-            <option key={state.abbreviation} value={state.abbreviation}>
-              {state.name}
-            </option>
-          ))}
-        </select>
-
+        <SelectField
+          label="State"
+          options={stateValues}
+          value={selectedState}
+          onChange={(newValue) => setSelectedState(newValue)}
+        />
         <label htmlFor="zip-code">Zip Code</label>
         <input id="zip-code" type="number" required />
       </fieldset>
 
-      <label htmlFor="department">Department</label>
-      <select name="department" id="department">
-        <option>Sales</option>
-        <option>Marketing</option>
-        <option>Engineering</option>
-        <option>Human Resources</option>
-        <option>Legal</option>
-      </select>
+      <SelectField
+        label="Department"
+        options={departments}
+        value={selectedDepartment}
+        onChange={(newValue) => setSelectedDepartment(newValue)}
+      />
       <button type="submit">Save</button>
     </form>
   );

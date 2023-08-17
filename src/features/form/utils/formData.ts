@@ -1,4 +1,9 @@
-export const states = [
+interface stateData {
+	name: string,
+	abbreviation: string,
+}
+
+export const states:  Array<stateData> = [
     {
         "name": "Alabama",
         "abbreviation": "AL"
@@ -235,4 +240,12 @@ export const states = [
         "name": "Wyoming",
         "abbreviation": "WY"
     }
+];
+
+export const departments: Array<string> = [
+    "Sales",
+    "Marketing",
+    "Engineering",
+    "Human Resources",
+    "Legal",
 ];
