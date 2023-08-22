@@ -1,6 +1,6 @@
 import { HashRouter } from "react-router-dom";
 import AppRoutes from "./routes";
-import Header from "../components/layout/Header";
+import Header from "../layout/Header";
 
 function App() {
   return (

@@ -4,8 +4,8 @@ import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import { addUser } from "../../../../store/features/userSlice";
 import { useAppDispatch } from "../../../../store/store";
-import { departments, states } from "../../utils/formData";
-import { handleDateChange } from "../../utils/functions";
+import { departments, states } from "../../../../utils/formData";
+import { handleDateChange } from "../../../../utils/functions";
 import styles from "./Form.module.scss";
 import SelectField from "./SelectField/SelectField";
 
