@@ -4,6 +4,8 @@ This is a React version of a jQuery application available [here](https://github.
 
 ## Installing and launching project
 
+0. Install Node [v18.17.1](https://nodejs.org/fr/download)
+
 1. Clone project
    `git clone https://github.com/S-Syrichko/HRnet-React.git `
 
